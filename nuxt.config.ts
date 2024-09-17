@@ -3,11 +3,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss',
     '@formkit/auto-animate',
     '@nuxtjs/color-mode',
     '@nuxt/image',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxt/ui',
   ],
   css: ["@/assets/scss/global.scss"],
 })
