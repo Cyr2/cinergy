@@ -1,13 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
+  eslint: {
+    config: {
+      stylistic: {
+        indent: "tab",
+        semi: false,
+        quotes: "double",
+      },
+    },
+  },
+
   modules: [
-    '@formkit/auto-animate',
-    '@nuxtjs/color-mode',
-    '@nuxt/image',
-    '@nuxt/eslint',
-    '@nuxt/ui',
+    "@formkit/auto-animate",
+    "@nuxtjs/color-mode",
+    "@nuxt/image",
+    "@nuxt/eslint",
+    "@nuxt/ui",
   ],
+
   css: ["@/assets/scss/global.scss"],
-})
+});
