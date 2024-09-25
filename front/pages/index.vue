@@ -1,12 +1,10 @@
 <template>
   <div>
     <div v-if="loaded">
-      <p
-        v-for="movie in movies"
-        :key="movie.visa"
-      >
-        {{ movie.titre_cotecine }}, {{ movie.visa }}
-      </p>
+      <DayMovies
+        :data="movies"
+        :date="20240925"
+      />
     </div>
     <div v-else>
       Loading...

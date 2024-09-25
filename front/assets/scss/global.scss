@@ -1,7 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @import "utils/fonts";
 
 * {
-    font-family:'HealTheWebA', sans-serif;
+    font-family: 'HealTheWebA', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
