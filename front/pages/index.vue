@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div v-if="loaded">
+    <div
+      v-if="loaded"
+      class="px-52 max-lg:px-10"
+    >
       <DayMovies
         :data="movies"
-        :date="20240925"
+        :date="20240928"
       />
     </div>
     <div v-else>

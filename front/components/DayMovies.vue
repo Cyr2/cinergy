@@ -2,7 +2,7 @@
   <div>
     <ul
       v-if="loaded"
-      class="flex flex-col gap-6"
+      class="flex flex-col gap-6 max-lg:gap-10"
     >
       <MovieCard
         v-for="movie in filteredMovies"
@@ -32,8 +32,6 @@ export default {
     },
   },
   setup(props) {
-    const loaded = ref(true);
-
     const filteredMovies = computed(() => {
       return props.data
         .map((movie) => {
@@ -50,6 +48,8 @@ export default {
         })
         .filter(movie => movie !== null);
     });
+
+    const loaded = ref(true);
 
     return {
       loaded,
