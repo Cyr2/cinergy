@@ -2,9 +2,9 @@
   <div>
     <div
       v-if="loaded"
-      class="px-52 max-lg:px-10"
+      class="px-52 max-2xl:px-[10vw] max-md:px-10"
     >
-      <DayMovies
+      <PagesMoviesDayMovies
         :data="movies"
         :date="20240928"
       />

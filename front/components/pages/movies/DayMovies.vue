@@ -1,18 +1,21 @@
 <template>
   <div>
     <ul
-      v-if="loaded"
-      class="flex flex-col gap-6 max-lg:gap-10"
+      v-if="loaded && filteredMovies.length > 0"
+      class="flex flex-col gap-6 max-md:gap-10"
     >
-      <MovieCard
+      <PagesMoviesMovieCard
         v-for="movie in filteredMovies"
         :key="movie.visa"
         :data="movie"
         :cine="{ name: 'Cineville' }"
       />
     </ul>
+    <div v-else-if="!loaded">
+      Chargement des films en cours...
+    </div>
     <div v-else>
-      Loading liste of movies...
+      Oops.. Aucun film n'est disponible pour cette date.
     </div>
   </div>
 </template>
