@@ -7,7 +7,9 @@
       :class="day"
       @click="handleDate(day)"
     >
-      {{ day.getDate() }}
+      <span>{{ day.toLocaleDateString(undefined, { weekday: 'long' }).slice(0, 3) }}</span>
+      <span>{{ day.getDate() }}</span>
+      <span>{{ day.toLocaleDateString(undefined, { month: 'long' }) }}</span>
     </button>
   </div>
 </template>
