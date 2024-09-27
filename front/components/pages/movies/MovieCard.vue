@@ -50,7 +50,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "MovieCard",
   inheritAttrs: false,
