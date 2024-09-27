@@ -9,6 +9,7 @@
         :key="movie.visa"
         :data="movie"
         :cine="{ name: 'Cineville' }"
+        :handle-select-movie="handleSelectMovie"
       />
     </ul>
     <div v-else-if="!loaded">
@@ -33,6 +34,10 @@ export default {
       type: Number,
       required: true,
     },
+    handleSelectMovie: {
+      type: Function,
+      required: true
+    }
   },
   setup(props) {
     const filteredMovies = computed(() => {

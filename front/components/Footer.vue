@@ -2,6 +2,7 @@
   <footer class="flex justify-center w-full py-6 bg-blue-600 text-white">
     <a
       href="https://dpessin.tech"
+      target="_blank"
     >
       <h5 class="text-lg">Made with by Cyri ❤</h5>
       <p class="text-sm">

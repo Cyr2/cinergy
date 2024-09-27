@@ -1,5 +1,6 @@
 <template>
-  <main class="flex flex-col items-center justify-between gap-8 min-h-screen">
+  <main class="flex flex-col items-center justify-between gap-12 min-h-screen">
+    <DefaultHeader />
     <div>
       <slot />
     </div>
@@ -8,5 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import DefaultFooter from "~/components/Footer.vue";
+import DefaultHeader from "@/components/Header.vue";
+import DefaultFooter from "@/components/Footer.vue";
 </script>
