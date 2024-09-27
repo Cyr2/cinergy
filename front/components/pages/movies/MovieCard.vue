@@ -4,11 +4,17 @@
     class="flex flex-col gap-2"
   >
     <div class="rounded-md flex h-80 max-md:flex-col max-md:h-full max-md:gap-2 overflow-hidden">
-      <NuxtImg
-        :src="`https://assets.cineville.fr/files/images/${data.movie_data[0].affichette}`"
-        class="w-56 h-full object-cover max-md:w-full"
-        @click="handleSelectMovie(data.movie_data[0].video_id)"
-      />
+      <div>
+        <div
+          class="relative w-56 h-full max-md:w-full cursor-pointer after:transition-opacity hover:after:opacity-100 after:opacity-0 after:content-['Click_to_launch_the_trailer'] after:flex after:items-center after:justify-center after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:w-full after:h-full after:text-white after:text-sm after:z-10 after:bg-black after:bg-opacity-50"
+          @click="handleSelectMovie(data.movie_data[0].video_id)"
+        >
+          <NuxtImg
+            :src="`https://assets.cineville.fr/files/images/${data.movie_data[0].affichette}`"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
       <div class="px-8 py-6 h-full flex flex-col items-start max-md:p-0">
         <h2 class="flex flex-col gap-2 text-2xl font-bold">
           {{ data.titre_cotecine }}
@@ -36,7 +42,7 @@
         >
           <a
             :href="`https://pontlabbe.cineville.fr/vad/${showtime.id_cinema}/${showtime.id_seance}/${showtime.id_bordereau}`"
-            class="py-1.5 text-lg text-blue-600 rounded-md px-4 shadow-[inset_0_0_0_2px_rgba(37,99,235)] text-center bg-white"
+            class="py-1.5 text-lg text-blue-600 rounded-md px-4 shadow-[inset_0_0_0_2px_rgba(37,99,235)] hover:drop-shadow-blueShadow text-center bg-white"
           >{{ showtime.heure }} - {{ showtime.version }}</a>
         </li>
       </ul>

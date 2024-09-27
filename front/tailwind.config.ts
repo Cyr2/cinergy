@@ -32,6 +32,9 @@ export default <Partial<Config>>{
           950: "#411309",
         },
       },
+      dropShadow: {
+        blueShadow: "0 0 10px rgba(37, 99, 235, 0.3)",
+      }
     },
   },
 };
