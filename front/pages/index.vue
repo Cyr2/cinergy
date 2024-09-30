@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="h-full">
     <div
       v-if="loaded"
-      class="px-52 max-2xl:px-[10vw] max-md:px-10"
+      class="w-screen px-52 max-2xl:px-[10vw] max-md:px-10 flex flex-col gap-5"
     >
       <PagesContentCalendar
         :date="selectedDate"
         :handle-date="handleSelectDate"
+        :format-date="formatDate"
       />
+      <hr class="h-0.5 rounded-full bg-gradient-to-r from-blue-600 to-black border-none">
       <PagesContentDayMovies
         :data="movies"
         :date="selectedDate"

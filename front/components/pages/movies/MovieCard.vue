@@ -38,11 +38,11 @@
         <li
           v-for="showtime in data.dates[0].showtimes"
           :key="showtime.id_seance"
-          class="flex"
+          class="flex max-sm:w-full"
         >
           <a
             :href="`https://pontlabbe.cineville.fr/vad/${showtime.id_cinema}/${showtime.id_seance}/${showtime.id_bordereau}`"
-            class="py-1.5 text-lg text-blue-600 rounded-md px-4 shadow-[inset_0_0_0_2px_rgba(37,99,235)] hover:drop-shadow-blueShadow text-center bg-white"
+            class="max-sm:w-full py-1.5 text-center bg-white text-lg text-blue-600 rounded-md px-4 shadow-[inset_0_0_0_2px_rgba(37,99,235)] hover:drop-shadow-blueShadow hover:bg-blue-600 hover:text-white"
           >{{ showtime.heure }} - {{ showtime.version }}</a>
         </li>
       </ul>

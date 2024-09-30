@@ -1,7 +1,7 @@
 <template>
   <main class="flex flex-col items-center justify-between gap-12 min-h-screen">
     <DefaultHeader />
-    <div>
+    <div class="flex-1">
       <slot />
     </div>
     <DefaultFooter />

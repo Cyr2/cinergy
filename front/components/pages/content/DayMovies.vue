@@ -12,10 +12,16 @@
         :handle-select-movie="handleSelectMovie"
       />
     </ul>
-    <div v-else-if="!loaded">
+    <div
+      v-else-if="!loaded"
+      class="text-center"
+    >
       Chargement des films en cours...
     </div>
-    <div v-else>
+    <div
+      v-else
+      class="text-center"
+    >
       Oops.. Aucun film n'est disponible pour cette date.
     </div>
   </div>
