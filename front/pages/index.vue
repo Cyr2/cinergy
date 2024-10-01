@@ -4,6 +4,7 @@
       v-if="loaded"
       class="w-screen px-52 max-2xl:px-[10vw] max-md:px-10 flex flex-col gap-5"
     >
+      <PagesContentCineMap />
       <PagesContentCalendar
         :date="selectedDate"
         :handle-date="handleSelectDate"

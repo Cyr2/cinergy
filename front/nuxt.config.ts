@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   modules: [
     "@formkit/auto-animate",
     "@nuxtjs/color-mode",
+    "@nuxtjs/leaflet",
     "@nuxt/image",
     "@nuxt/eslint",
     "@nuxt/ui",

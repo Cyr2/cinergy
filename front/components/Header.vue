@@ -5,6 +5,7 @@
     </h1>
     <a
       href="https://grainparis.art"
+      class="text-end"
     >
       Strongly inspired by GrainParisArt
     </a>

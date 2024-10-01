@@ -8,7 +8,7 @@
         v-for="movie in filteredMovies"
         :key="movie.visa"
         :data="movie"
-        :cine="{ name: 'Cineville' }"
+        :cine="{ name: 'Cineville - Pont l\'abbé' }"
         :handle-select-movie="handleSelectMovie"
       />
     </ul>
