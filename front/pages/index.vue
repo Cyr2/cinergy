@@ -4,6 +4,11 @@
       v-if="loaded"
       class="w-screen px-52 max-2xl:px-[10vw] max-md:px-10 flex flex-col gap-5"
     >
+      <PagesMoviesYoutubePreview
+        v-if="selectedMovieVideoId"
+        :video-id="selectedMovieVideoId"
+        :handle-select-movie="handleSelectMovie"
+      />
       <PagesContentCineMap />
       <PagesContentCalendar
         :date="selectedDate"
@@ -14,11 +19,6 @@
       <PagesContentDayMovies
         :data="movies"
         :date="selectedDate"
-        :handle-select-movie="handleSelectMovie"
-      />
-      <PagesMoviesYoutubePreview
-        v-if="selectedMovieVideoId"
-        :video-id="selectedMovieVideoId"
         :handle-select-movie="handleSelectMovie"
       />
     </div>

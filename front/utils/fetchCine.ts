@@ -4,7 +4,7 @@ export function useCine() {
 
   const getCine = async () => {
     try {
-      const responseAsJson = [
+      cine.value = [
         {
           id: 4153,
           name: "Cineville",
@@ -13,8 +13,6 @@ export function useCine() {
           longitude: -4.225170,
         }
       ];
-
-      cine.value = responseAsJson;
     }
     catch (error) {
       console.error("Erreur lors de la récupération des cinemas", error);

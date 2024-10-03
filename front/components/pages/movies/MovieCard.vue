@@ -31,9 +31,12 @@
       </div>
     </div>
     <div class="flex gap-x-8 gap-y-2 max-md:flex-col">
-      <p class="w-56 py-1.5 text-lg bg-blue-600 text-white flex items-center justify-center rounded-md max-md:w-full">
+      <a
+        :href="cine.url"
+        class="w-56 pb-1.5 pt-2.5 text-lg bg-blue-600 text-white text-center rounded-md max-md:w-full"
+      >
         {{ cine.name }}
-      </p>
+      </a>
       <ul class="flex gap-2">
         <li
           v-for="showtime in data.dates[0].showtimes"
@@ -42,7 +45,7 @@
         >
           <a
             :href="`https://pontlabbe.cineville.fr/vad/${showtime.id_cinema}/${showtime.id_seance}/${showtime.id_bordereau}`"
-            class="max-sm:w-full py-1.5 text-center bg-white text-lg text-blue-600 rounded-md px-4 shadow-[inset_0_0_0_2px_rgba(37,99,235)] hover:drop-shadow-blueShadow hover:bg-blue-600 hover:text-white"
+            class="max-sm:w-full pb-1.5 pt-2.5 text-center bg-white text-lg text-blue-600 rounded-md px-4 shadow-[inset_0_0_0_2px_rgba(37,99,235)] hover:drop-shadow-blueShadow hover:bg-blue-600 hover:text-white"
           >{{ showtime.heure }} - {{ showtime.version }}</a>
         </li>
       </ul>

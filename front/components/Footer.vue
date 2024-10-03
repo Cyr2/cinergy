@@ -4,7 +4,7 @@
       href="https://dpessin.tech"
       target="_blank"
     >
-      <h5 class="text-lg">Made with by Cyri ❤</h5>
+      <h5 class="text-lg">Made with ❤ by Cyri</h5>
       <p class="text-sm">
         click to visited my website
       </p>
