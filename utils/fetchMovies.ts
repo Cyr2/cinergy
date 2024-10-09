@@ -3,11 +3,15 @@ export function useMovies() {
   const movies = ref([]);
 
   const getMovies = async () => {
-    const url = "http://localhost:8000/";
+    const url = "https://cine-api-git-main-cyr2s-projects.vercel.app";
     try {
       const response = await fetch(url);
-      const responseAsJson = await response.json();
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${ response.status }`);
+      }
+
+      const responseAsJson = await response.json();
       movies.value = responseAsJson.data;
     }
     catch (error) {
