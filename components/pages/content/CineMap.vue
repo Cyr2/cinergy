@@ -4,12 +4,14 @@
     class="rounded-xl overflow-hidden z-30"
   >
     <LMap
+      v-model:zoom="zoom"
       :style="{ height: '350px' }"
-      :zoom="16"
       :min-zoom="5"
       :inertia-max-speed="100"
       :center="center"
       :use-global-leaflet="false"
+      @moveend="updateVisibleCine"
+      @zoomend="updateVisibleCine"
     >
       <LTileLayer
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -17,15 +19,17 @@
         name="OpenStreetMap"
       />
       <LMarker
-        v-for="currentCine in cine"
-        :key="currentCine.id"
-        :lat-lng="[currentCine.lattitude, currentCine.longitude]"
+        v-for="currentCine in visibleCine"
+        :key="`${currentCine.latitude}-${currentCine.longitude}-${currentCine.nom}`"
+        :lat-lng="[currentCine.latitude, currentCine.longitude]"
       >
         <LPopup>
-          <h2>{{ currentCine.name }}</h2>
-          <p>{{ currentCine.city }}</p>
+          <h2>{{ currentCine.nom }}</h2>
+          <p>{{ currentCine.commune }}</p>
         </LPopup>
-        <LIcon><div class="rounded-full bg-blue-600 p-2.5 border-white border-4 -translate-x-2 drop-shadow-blueShadow hover:border-blue-600 hover:bg-white" /></LIcon>
+        <LIcon>
+          <div class="rounded-full bg-blue-600 p-2.5 border-white border-4 -translate-x-2 drop-shadow-blueShadow hover:border-blue-600 hover:bg-white" />
+        </LIcon>
       </LMarker>
     </LMap>
   </div>
@@ -42,6 +46,45 @@ const { cine, loaded } = useCine();
 const defaultCenter = [47.86592, -4.2208461];
 
 const center = ref<[number, number] | null>(null);
+const zoom = ref(16);
+const visibleCine = ref([]);
+const largeCineNames = ["Pathé", "UGC", "Gaumont", "CGR", "Kinepolis"];
+
+const updateVisibleCine = () => {
+  console.log(zoom.value);
+  if (zoom.value >= 8) {
+    visibleCine.value = cine.value;
+  }
+  else {
+    visibleCine.value = filterCineByCity(cine.value, 1);
+  }
+};
+
+const filterCineByCity = (cineList, maxCinePerCity) => {
+  const cityMap = new Map();
+  cineList.forEach((cine) => {
+    if (largeCineNames.some(name => cine.nom.includes(name))) {
+      if (cine.commune === "Paris") {
+        if (!cityMap.has("Paris")) {
+          cityMap.set("Paris", [cine]);
+        }
+      }
+      else {
+        if (!cityMap.has(cine.commune)) {
+          cityMap.set(cine.commune, []);
+        }
+        if (cityMap.get(cine.commune).length < maxCinePerCity) {
+          cityMap.get(cine.commune).push(cine);
+        }
+      }
+    }
+  });
+  return Array.from(cityMap.values()).flat();
+};
+
+
+watch(zoom, updateVisibleCine);
+watch(cine, updateVisibleCine);
 
 onMounted(() => {
   if (navigator.geolocation) {
