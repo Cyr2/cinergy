@@ -13,8 +13,6 @@ export function useCine() {
       result.push(...data.results);
     }
 
-    console.log(totalCine, result);
-
     cine.value = result;
     loaded.value = true;
   };

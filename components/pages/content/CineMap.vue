@@ -19,6 +19,17 @@
         name="OpenStreetMap"
       />
       <LMarker
+        v-if="center !== defaultCenter"
+        :lat-lng="center"
+      >
+        <LPopup>
+          <h2>Your position</h2>
+        </LPopup>
+        <LIcon>
+          <div class="rounded-full bg-green-600 p-2.5 border-white border-4 -translate-x-2 drop-shadow-greenShadow hover:border-green-600 hover:bg-white" />
+        </LIcon>
+      </LMarker>
+      <LMarker
         v-for="currentCine in visibleCine"
         :key="`${currentCine.latitude}-${currentCine.longitude}-${currentCine.nom}`"
         :lat-lng="[currentCine.latitude, currentCine.longitude]"
@@ -51,7 +62,6 @@ const visibleCine = ref([]);
 const largeCineNames = ["Pathé", "UGC", "Gaumont", "CGR", "Kinepolis"];
 
 const updateVisibleCine = () => {
-  console.log(zoom.value);
   if (zoom.value >= 8) {
     visibleCine.value = cine.value;
   }
@@ -122,6 +132,18 @@ onMounted(() => {
 .leaflet-control-attribution {
   display: none;
 }
+
+.leaflet-control-zoom {
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  border: 2px solid rgba(0, 0, 0, 0.20) !important;
+
+  .leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    background-color: #0047e1 !important;
+    color: white !important;
+  }
+}
+
 .leaflet-popup-content {
   text-align: center;
   div p {

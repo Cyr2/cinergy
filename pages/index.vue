@@ -2,7 +2,7 @@
   <div class="h-full">
     <div
       v-if="loaded"
-      class="w-screen px-52 max-2xl:px-[10vw] max-md:px-10 flex flex-col gap-5"
+      class="px-52 max-2xl:px-[10vw] max-md:px-10 flex flex-col gap-5"
     >
       <PagesMoviesYoutubePreview
         v-if="selectedMovieVideoId"
