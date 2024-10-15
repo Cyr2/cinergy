@@ -26,20 +26,26 @@
           <h2>Your position</h2>
         </LPopup>
         <LIcon>
-          <div class="rounded-full bg-green-600 p-2.5 border-white border-4 -translate-x-2 drop-shadow-greenShadow hover:border-green-600 hover:bg-white" />
+          <div class="rounded-full bg-green-600 w-7 h-7 border-white border-4 -translate-x-2 drop-shadow-greenShadow hover:border-green-600 hover:bg-white" />
         </LIcon>
       </LMarker>
       <LMarker
         v-for="currentCine in visibleCine"
         :key="`${currentCine.latitude}-${currentCine.longitude}-${currentCine.nom}`"
         :lat-lng="[currentCine.latitude, currentCine.longitude]"
+        @click="zoom <= 7 && !selectedRegion ? handleRegionClick(currentCine.nom) : null"
       >
         <LPopup>
           <h2>{{ currentCine.nom }}</h2>
           <p>{{ currentCine.commune }}</p>
         </LPopup>
-        <LIcon>
-          <div class="rounded-full bg-blue-600 p-2.5 border-white border-4 -translate-x-2 drop-shadow-blueShadow hover:border-blue-600 hover:bg-white" />
+        <LIcon v-if="zoom <= 7 && !selectedRegion">
+          <div class="flex rounded-full bg-blue-600 w-7 h-7 text-white items-center justify-center border-white border-4 -translate-x-2 drop-shadow-blueShadow hover:border-blue-600 hover:bg-white hover:text-blue-600">
+            {{ currentCine.dep }}
+          </div>
+        </LIcon>
+        <LIcon v-else>
+          <div class="rounded-full bg-blue-600 w-7 h-7 border-white border-4 -translate-x-2 drop-shadow-blueShadow hover:border-blue-600 hover:bg-white" />
         </LIcon>
       </LMarker>
     </LMap>
@@ -61,13 +67,44 @@ const zoom = ref(16);
 const visibleCine = ref([]);
 const largeCineNames = ["Pathé", "UGC", "Gaumont", "CGR", "Kinepolis"];
 
+const selectedRegion = ref<string | null>(null);
+
 const updateVisibleCine = () => {
-  if (zoom.value >= 8) {
+  if (zoom.value >= 12) {
     visibleCine.value = cine.value;
   }
-  else {
+  else if (zoom.value > 7) {
     visibleCine.value = filterCineByCity(cine.value, 1);
   }
+  else {
+    visibleCine.value = filterByRegion();
+  }
+};
+
+const handleRegionClick = (region) => {
+  console.log(selectedRegion.value, region);
+  if (selectedRegion.value === region) {
+    selectedRegion.value = null;
+    updateVisibleCine();
+  }
+  else {
+    selectedRegion.value = region;
+    visibleCine.value = cine.value.filter(cine => cine.region_administrative === region);
+  }
+};
+
+const filterByRegion = () => {
+  const regions = cine.value.map(cine => cine.region_administrative).filter((value, index, self) => self.indexOf(value) === index);
+  selectedRegion.value = null;
+  return regions.map((region) => {
+    const regionCine = cine.value.find(cine => cine.region_administrative === region);
+    return {
+      latitude: regionCine.latitude,
+      longitude: regionCine.longitude,
+      nom: region,
+      dep: regionCine.code_insee.slice(0, 2),
+    };
+  });
 };
 
 const filterCineByCity = (cineList, maxCinePerCity) => {
